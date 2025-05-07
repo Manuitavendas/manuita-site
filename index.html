@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manuita Doceria e Pizzas Delivery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('background.jpg');
+      background-size: cover;
+      color: #fff;
+      padding: 20px;
+    }
+    .container {
+      background-color: rgba(0,0,0,0.7);
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 700px;
+      margin: auto;
+    }
+    label, select, input {
+      display: block;
+      margin: 10px 0;
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Manuita Doceria e Pizzas Delivery</h1>
+    <p>Bem-vindo! Monte sua pizza e seus doces no pote abaixo:</p>
+
+    <h2>Monte sua Pizza</h2>
+    <label for="massa">Escolha a Massa:</label>
+    <select id="massa">
+      <option>Tradicional</option>
+      <option>Fina</option>
+      <option>Pan</option>
+      <option>Integral</option>
+      <option>Sem Glúten</option>
+    </select>
+
+    <label for="molho">Escolha o Molho:</label>
+    <select id="molho">
+      <option>Tomate</option>
+      <option>Branco</option>
+      <option>Barbecue</option>
+      <option>Pesto</option>
+      <option>Alho e Óleo</option>
+    </select>
+
+    <label for="ingredientes">Ingredientes:</label>
+    <select id="ingredientes" multiple size="6">
+      <option>Queijo</option>
+      <option>Calabresa</option>
+      <option>Frango</option>
+      <option>Milho</option>
+      <option>Cebola</option>
+      <option>Tomate</option>
+      <option>Catupiry</option>
+      <option>Azeitona</option>
+      <option>Bacon</option>
+      <option>Champignon</option>
+      <option>Pimentão</option>
+      <option>Rúcula</option>
+      <option>Tomate Seco</option>
+    </select>
+
+    <label for="tamanho">Tamanho:</label>
+    <select id="tamanho">
+      <option>Pequena</option>
+      <option>Média</option>
+      <option>Grande</option>
+      <option>Família</option>
+    </select>
+
+    <h2>Doces no Pote</h2>
+    <label for="tipoDoce">Tipo de Doce:</label>
+    <select id="tipoDoce">
+      <option>Chocolate</option>
+      <option>Morango</option>
+      <option>Doce de Leite</option>
+      <option>Brigadeiro</option>
+      <option>Nutella</option>
+    </select>
+
+    <label for="frutas">Frutas:</label>
+    <select id="frutas" multiple size="5">
+      <option>Morango</option>
+      <option>Banana</option>
+      <option>Kiwi</option>
+      <option>Abacaxi</option>
+      <option>Manga</option>
+      <option>Uva</option>
+    </select>
+
+    <label for="tamanhoDoce">Tamanho do Pote:</label>
+    <select id="tamanhoDoce">
+      <option>150ml</option>
+      <option>200ml</option>
+      <option>250ml</option>
+      <option>300ml</option>
+    </select>
+
+    <h2>Informações do Cliente</h2>
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" />
+
+    <label for="endereco">Endereço:</label>
+    <input type="text" id="endereco" />
+
+    <label for="pagamento">Forma de Pagamento:</label>
+    <select id="pagamento">
+      <option>Dinheiro</option>
+      <option>Cartão de Crédito</option>
+      <option>Pix</option>
+    </select>
+
+    <button onclick="finalizarPedido()">Finalizar Pedido</button>
+    <p id="mensagemFinal"></p>
+  </div>
+
+  <script>
+    function finalizarPedido() {
+      const pedido = `Olá! Gostaria de fazer um pedido:\n
+Pizza: Massa ${document.getElementById("massa").value}, Molho ${document.getElementById("molho").value}, 
+Ingredientes: ${Array.from(document.getElementById("ingredientes").selectedOptions).map(o => o.value).join(", ")}, 
+Tamanho: ${document.getElementById("tamanho").value}\n
+Doce: ${document.getElementById("tipoDoce").value}, Frutas: ${Array.from(document.getElementById("frutas").selectedOptions).map(o => o.value).join(", ")}, 
+Tamanho: ${document.getElementById("tamanhoDoce").value}\n
+Nome: ${document.getElementById("nome").value}, Endereço: ${document.getElementById("endereco").value}, 
+Pagamento: ${document.getElementById("pagamento").value}`;
+
+      const whatsappUrl = `https://wa.me/5591993442848?text=${encodeURIComponent(pedido)}`;
+      window.open(whatsappUrl, '_blank');
+      document.getElementById("mensagemFinal").innerText = "Obrigado por seu pedido! Abrindo o WhatsApp...";
+    }
+  </script>
+</body>
+</html>
